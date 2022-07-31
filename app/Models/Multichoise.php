@@ -5,8 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormDefault extends Model
+class Multichoise extends Model
 {
     use HasFactory;
-    protected $fillable=['status','form','type'];
+    protected $fillable=[
+        'options'
+    ];
+    protected $casts=[
+        'options'=>'array'
+    ];
 }
