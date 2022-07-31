@@ -14,8 +14,8 @@
 <livewire:admin.leftbar/>
 
 {{$slot}}
-@livewireScripts
 
 </body>
+    
 <livewire:admin.footer />
 </html>

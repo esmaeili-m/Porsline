@@ -5919,7 +5919,7 @@ input:not([type]) + label:after, input[type=text]:not(.browser-default) + label:
 
 textarea {
     width: 100%;
-    height: 3rem;
+    height: 12rem;
     background-color: transparent
 }
 

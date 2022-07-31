@@ -30,47 +30,62 @@ class Index extends Component
       $day=Date::latest()->value('id');
       $form=FormDay::where('id_day',$day);
         if( $form->count() == 0){
-            $key='form'.'1';
+            $key='1';
             $collection=[];
 
         } else{
             $Form=$form->value('form');
-            $key='form'.count($Form)+1;
+            $key=count($Form)+1;
             $forms=$form->value('form');
-            $collection=$forms;
+            $collection=[];
+//            dd($forms);
+//            $collection=$forms;
         }
       $newroute=str_replace('route',$key,$formdefault);
       $newtitle=str_replace('سوال خود را درج کنید',$this->route,$newroute);
-      $collection[$key]=$newtitle;
+      $collection['content']=$newtitle;
+      $collection['key']=$key;
+      $forms[$key]=$collection; 
       if(is_null($day)){
          return abort(404);
       }
       if(is_null($form->value('id'))){
        FormDay::create([
-          'form'=>$collection,
+          'form'=>[
+              $key=>[
+                'content'=>  $collection['content'],
+                  'key'=>$key
+              ],
+          ],
           'id_day'=>$day
        ]);
 
       }else{
-          $form->update(['form' => $collection]);
-          $this->route='';
-      }
-      FormDefault::where('status',1)->update(['status'=>0]);
-    }
+          $form->update([
+                  'form' => $forms,
+          ]);
 
-     public function enable($id){
-        FormDefault::where('status',1)->update(['status'=> 0]);
-        $form=FormDefault::where('id',$id)->where('status',0)->first()->take(1)->update(['status'=>1]);
+      }
+        $this->route='';
+        FormDefault::where('status',1)->update(['status'=>0]);
+    }
+     public function enable($id)
+     {
+         FormDefault::where('status',1)->update(['status'=> 0]);
+         $form=FormDefault::where('id',$id)->where('status',0)->update(['status'=>1]);
+         if($id == 2){
+             return redirect()->route('FormCreate');
+         }
      }
      public function disable(){
-        $form=FormDefault::where('status',1)->first()->take(1)->update(['status'=>0]);
+
+        $form=FormDefault::where('status',1)->update(['status'=>0]);
      }
      public function deleteFormDay($id){
-
         $Date=Date::latest()->first()->value('id');
         $form=FormDay::where('id_day',$Date)->first()->take(1);
         $value=$form->value('form');
-        unset($value['form'.$id]);
+        unset($value[$id]); 
         if(!empty($form)){
             $form->update(['form'=> $value ]);
         }else{
@@ -82,6 +97,7 @@ class Index extends Component
         $defult=FormDefault::where('status',1)->first();
         $Date=Date::latest()->first()->value('id');
         $live=FormDay::where('id_day',$Date)->value('form');
+//        dd($live);
         return view('livewire.admin.question.form.index',compact('defult','live'));
     }
 }
