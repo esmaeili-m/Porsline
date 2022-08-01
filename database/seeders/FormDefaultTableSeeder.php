@@ -63,6 +63,13 @@ class FormDefaultTableSeeder extends Seeder
           'status'=>0,
           'type'=> 'multiple-choice',
         ]);
+        FormDefault::create([
+          'form'=>'<label>سوال خود را درج کنید</label><br>
+                    <input  required   wire:model.lazy="route"   
+                    type="text"   class="form-control" placeholder="سوال خود را درج کنید">',
+          'status'=>0,
+          'type'=> 'sliding',
+        ]);
 
     }
 }

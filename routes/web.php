@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/start',\App\Http\Livewire\Home\Index::class)->name('start');
+Route::get('/Question',\App\Http\Livewire\Home\Form\Quesitons::class)->name('Question');
 Route::get('/new',\App\Http\Livewire\Home\Form\Index::class)->name('new');
 Route::get('/notifications',\App\Http\Livewire\Home\Notifications::class)->name('notifications');
 

@@ -9,4 +9,7 @@ class Date extends Model
 {
     use HasFactory;
     protected $fillable=['date','days'];
+    public function forms(){
+        return $this->belongsTo(FormDay::class,'id','id_day');
+    }
 }

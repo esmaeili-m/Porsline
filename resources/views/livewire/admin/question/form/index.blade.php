@@ -21,8 +21,8 @@
                                     <a href="#" wire:click="enable(6)" title="پیش نویس">چند گزینه ای <span
                                                 class="pull-right badge bg-blue"><i class="fas fa-plus"></i></span></a>
                                 </li>
-                                <li class="form_bal_select">
-                                    <a href="javascript:;" title="سطل آشغال"> انتخابی<span
+                                <li >
+                                    <a wire:click="enable(7)" title="سطل آشغال"> کشویی<span
                                                 class="pull-right badge bg-blue"><i class="fas fa-plus"></i></span></a>
                                 </li>
                                 <li class="form_bal_radio">
@@ -119,12 +119,13 @@
                                     </div>
                                 </div>
                             </form>
-                            @if($defult->id == 6)
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                @if($defult->id == 6 || $defult->id == 7)
                                 <div class="card">
                                     <div class="body">
                                         <div class="row">
                                             <div class="col-4">
+                                                حداقل دو گزینه باید داشته باشد
                                                 <form wire:submit.prevent="addoption">
                                                     <input required wire:model.lazy="option"
                                                            type="text" class="form-control"
@@ -140,7 +141,9 @@
                                             ?>
                                             @if($option !== null)
                                             @foreach($option as $i )
-                                            {!! $i['option'] !!}
+                                                    <a wire:click="add({{$i['option']}})">
+                                                    {!! $i['option']!!}
+                                                    </a>
                                             @endforeach
                                             @endif
                                         </div>
@@ -153,28 +156,12 @@
                     </div>
                 @endif
             </div>
-            @if(\App\Models\FormDefault::where('id',6)->value('status') == 1)
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                        <div class="card">
-                            <div class="body">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            @endif
             @if($live != null)
                 <?php
                 $count = 0;
                 ?>
                 @foreach($live as $i)
                     <?php $count++ ?>
-
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="card">
                             <div class="body">
@@ -193,7 +180,24 @@
                                                 <div class="form-line">
                                                     <p>
                                                     <span style="white-space:pre-line;">
-                                                        {!! $i['content'] !!}
+                                                        @if(!is_array($i['content']))
+                                                            {!! $i['content'] !!}
+                                                        @else
+                                                             @if(isset($i['title'])){{$i['title']}} @endif
+                                                                     @if(isset($i['type']) == 'sliding' )
+                                                                            @foreach($i['content'] as $b )
+                                                                                <div class="row">
+                                                                                     {!! $b['option'] !!}
+                                                                                </div>
+                                                                            @endforeach
+                                                                    @else
+                                                                            <div class="row">
+                                                                                @foreach($i['content'] as $b )
+                                                                                     {!! $b['option'] !!}
+                                                                                @endforeach
+                                                                                </div>
+                                                                    @endif
+                                                        @endif
                                                     </span>
                                                     </p>
                                                 </div>
@@ -201,10 +205,6 @@
 
                                         </div>
                                     </div>
-                                    {{--                                <button  type="submit" class="btn-hover mr-5 btn-border-radius color-1 ">افزودن فرم</button>--}}
-                                    {{--                                <a wire:click="disable">--}}
-                                    {{--                                    <button  class="btn-hover mr-5 btn-border-radius color-2 ">حذف فرم</button>--}}
-                                    {{--                                </a>--}}
                                 </form>
                             </div>
 

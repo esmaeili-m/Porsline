@@ -51,26 +51,42 @@ class Index extends Component
             $collection=[];
 
         }
+        if($formdefault->value('id') == 6){
+            $options=Multichoise::latest()->take(1);
+            $collection['title']=$this->route;
+            $collection['content']=$options->value('options');
+            $collection['key']=$key;
+            $collection['type']='multiple-choice';
 
-        $newtitle=str_replace('سوال خود را درج کنید',$this->route,$formdefault->value('form'));
-        if($formdefault->value('id')==3)
-            $newtitle = str_replace('text','email',$newtitle);
-      if($formdefault->value('id')==4)
-            $newtitle = str_replace('text','number',$newtitle);
-      if($formdefault->value('id')==5)
-            $newtitle = str_replace('text','password',$newtitle);
-      if($this->max !== null)
-          $newtitle = str_replace('up',$this->max,$newtitle);
-      if($this->min !== null)
-          $newtitle=str_replace('dw',$this->min,$newtitle);
-      if($this->required == null)
-          $newtitle=str_replace('required',' ',$newtitle);
-      if($this->placeholder !== null)
-          $newtitle=str_replace('پاسخ خود را درج کنید',$this->placeholder,$newtitle);
-      $collection['content']=$newtitle;
-      $collection['key']=$key;
-      $forms[$key]=$collection;
-      
+        }elseif($formdefault->value('id') == 7){
+            $options=Multichoise::latest()->take(1);
+            $collection['title']=$this->route;
+            $collection['content']=$options->value('options');
+            $collection['key']=$key;
+            $collection['type']='sliding';
+
+        }
+        else{
+            $newtitle=str_replace('سوال خود را درج کنید',$this->route,$formdefault->value('form'));
+            if($formdefault->value('id')==3)
+                $newtitle = str_replace('text','email',$newtitle);
+            if($formdefault->value('id')==4)
+                $newtitle = str_replace('text','number',$newtitle);
+            if($formdefault->value('id')==5)
+                $newtitle = str_replace('text','password',$newtitle);
+            if($this->max !== null)
+                $newtitle = str_replace('up',$this->max,$newtitle);
+            if($this->min !== null)
+                $newtitle=str_replace('dw',$this->min,$newtitle);
+            if($this->required == null)
+                $newtitle=str_replace('required',' ',$newtitle);
+            if($this->placeholder !== null)
+                $newtitle=str_replace('پاسخ خود را درج کنید',$this->placeholder,$newtitle);
+            $collection['content']=$newtitle;
+            $collection['key']=$key;
+
+        }
+        $forms[$key]=$collection;
       if(is_null($day)){
          return abort(404);
       }
@@ -79,29 +95,37 @@ class Index extends Component
           'form'=>[
               $key=>[
                 'content'=>  $collection['content'],
-                  'key'=>$key
+                  'key'=>$key,
               ],
           ],
-          'id_day'=>$day
+          'id_day'=>$day,
        ]);
 
       }else{
           $form->update([
                   'form' => $forms,
           ]);
+      }
 
+      if($formdefault->value('id') == 6){
+          $options=Multichoise::latest()->take(1)->delete();
       }
         $this->route='';
         $this->placeholder='';
         $this->required='';
         $this->max='';
         $this->min='';
+
+
         FormDefault::where('status',1)->update(['status'=>0]);
     }
      public function enable($id)
      {
          FormDefault::where('status',1)->update(['status'=> 0]);
          $form=FormDefault::where('id',$id)->where('status',0)->update(['status'=>1]);
+         if($id == 6 || $id == 7){
+             Multichoise::truncate();
+         }
          if($id == 2){
              return redirect()->route('FormCreate');
          }
@@ -125,7 +149,7 @@ class Index extends Component
     public function addoption()
     {
         $option=Multichoise::latest()->take(1);
-
+        $id_form=FormDefault::where('status',1)->value('id');
         if ($option->count() == 0){
             $key='1';
             $colection=[];
@@ -135,9 +159,12 @@ class Index extends Component
             $collection=[];
         }
         $colection['key']=$key;
-        $name='<div class="m-2">
+        if($id_form == 6){
+            $name='<div class="m-2">
                          <a  wire:click=add('.$key.') href="#"><div class="mr-4  badge col-indigo">'.$this->option.'</div></a>
                       </div>';
+        }else
+            $name=' <button wire:click=add('.$key.') type="button" class="btn btn-outline-primary mb-3">'.$this->option.'</button>';
         $colection['option']=$name;
         $options[$key] =$colection;
        if ($option->count() == 0){
@@ -155,6 +182,18 @@ class Index extends Component
            ]);
        }
         $this->option='';
+     }
+     public function add($id){
+           $form=Multichoise::latest()->take(1);
+           $value=$form->value('options');
+           unset($value[$id]);
+           if (empty($value)){
+               $form->delete();
+           }else{
+               $form->update([
+                   'options'=>$value
+               ]);
+           }
      }
     public function render()
     {
