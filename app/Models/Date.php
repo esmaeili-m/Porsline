@@ -12,4 +12,7 @@ class Date extends Model
     public function forms(){
         return $this->belongsTo(FormDay::class,'id','id_day');
     }
+    public function anserw(){
+        return $this->hasMany(Answer::class,'day','id');
+    }
 }

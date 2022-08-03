@@ -74,6 +74,21 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="part">شماره تلفن</label>
+                                </div>
+                                <div class="col-lg-3 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input wire:model.laze="user.phone" type="text" id="part"
+                                                   class="form-control" placeholder="شماره مورد نظر را وارد کنید">
+                                            @error('system.part')
+                                            <div class="alert alert-danger" style="text-align: center">
+                                                {{$message}}
+                                            </div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="row clearfix">
                                 <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5">
                                 </div>

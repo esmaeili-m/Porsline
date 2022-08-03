@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Home\Form;
 
+use App\Models\Answer;
 use App\Models\Date;
 use App\Models\FormDay;
+use App\Models\FormDefault;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,16 +15,43 @@ class Quesitons extends Component
     use WithPagination;
     public $counter;
     public $size;
-    public $route;
+    public $textfeild;
+    public $textarea;
+    public $options;
+    public $colection = [];
+    public  $value=[];
+    public  $number;
+//    public
+     
+    public function mount()
+    {
+        $this->counter = 1;
+        $this->size = 1;
+    }
+
+    public function createform()
+    {
+//        $this->counter += $this->size;
+
+    }
+
+    public function save()
+    {
+        $flat=Arr::flatten($this->value);
+        Answer::create([
+            'answer'=>$flat,
+            'phone'=>$this->value['number'],
+            'day'=>Date::latest()->take(1)->value('id'),
+            'time'=>'1'
+        ]);
+        $this->emit('toast', 'success', ' پاسخ ثبت گردید.');
+//        $flat[count($flat)]= now()->format('H:i:s');
+    }
     
-    protected $paginationTheme = 'bootstrap';
     public function increment()
     {
-
-
-        
-        // $this->counter = $this->counter + $this->size;
         $this->counter += $this->size;
+
     }
 
     public function decrement()
@@ -31,11 +61,7 @@ class Quesitons extends Component
             $this->counter -= $this->size;
         }
     }
-    public function mount()
-    {
-        $this->counter = 1;
-        $this->size = 1; //default value
-    }
+
     public function render()
     {
         $day=Date::latest()->take(1)->value('id');

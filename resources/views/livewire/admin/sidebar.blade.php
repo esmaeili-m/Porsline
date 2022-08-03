@@ -28,14 +28,14 @@
 
                 </ul>
             </li>
-            <li class="{{Request::routeIs('SystemUser')?'active':''}}">
-                <a href="#" onClick="return false;" class="menu-toggle {{Request::routeIs('system')?'toggled':''}}">
+            <li class="{{Request::routeIs('user')?'active':''}}">
+                <a href="#" onClick="return false;" class="menu-toggle {{Request::routeIs('user')?'toggled':''}}">
                     <i class="menu-icon ti-layout"></i>
                     <span> کاربران</span>
                 </a>
                 <ul class="ml-menu">
-                    <li class="{{Request::routeIs('system')?'active':''}}">
-                        <a href="/system">لیست کاربران</a>
+                    <li class="{{Request::routeIs('user')?'active':''}}">
+                        <a href="/user">لیست کاربران</a>
                     </li>
                 </ul>
             </li>

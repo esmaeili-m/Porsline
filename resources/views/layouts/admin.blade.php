@@ -4,7 +4,7 @@
 <head>
     <livewire:admin.head />
     @livewireStyles
-
+    <script src="{{mix('/js/app.js')}}"></script>
 </head>
 
 <body class="light rtl">

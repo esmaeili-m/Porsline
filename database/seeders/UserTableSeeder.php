@@ -25,6 +25,7 @@ class UserTableSeeder extends Seeder
             'name'=> 'mahdiesmaeili',
             'email'=> 'mahdiesmaeili@gmail.com',
             'role'=> 'admin',
+            'phone'=> '09193544391',
             'password'=> bcrypt('mahdicfc'),
          ]);
     }

@@ -7,7 +7,7 @@
                     <div class="body">
                         <div id="mail-nav">
                             <button type="button"
-                                    class="btn btn-success waves-effect m-b-15">{{\App\Models\Date::latest()->first()->value('date')}}</button>
+                                    class="btn btn-success waves-effect m-b-15">{{\App\Models\Date::latest()->take(1)->value('date')}}</button>
                             <ul class="" id="mail-folders">
                                 <li>
                                     <a wire:click="enable(1)" href="javascript:;" title="ارسال">فیلد متن <span
@@ -39,6 +39,10 @@
                                 </li>
                                 <li class="form_bal_password">
                                     <a href="#" wire:click="enable(5)">پسورد <span class="pull-right badge bg-blue"><i
+                                                    class="fas fa-plus"></i></span></a>
+                                </li>
+                                <li class="form_bal_password">
+                                    <a href="#" wire:click="enable(8)">شماره تلفن<span class="pull-right badge bg-blue"><i
                                                     class="fas fa-plus"></i></span></a>
                                 </li>
 

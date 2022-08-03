@@ -25,11 +25,12 @@ class Index extends Component
             'date'=>  $this->date->date,
             'days'=>'null'
         ]);
+        $this->emit('toast', 'success', ' تاریخ ثبت گردید.');
         
+
     }
     public function render()
     {
-        
         $data=verta()->format('Y-m-d');
         return view('livewire.admin.question.index',compact('data'));
     }

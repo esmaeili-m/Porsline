@@ -17,12 +17,13 @@ use function PHPUnit\Framework\isNull;
 class Index extends Component
 {
     public FormDefault $formdefult;
-    public $route;
+//    public $route;
     public $min;
     public $max;
     public $required;
     public $placeholder;
     public $option;
+    public $route;
     public function mount()
     {
         $this->formdefult = new FormDefault();
@@ -68,22 +69,34 @@ class Index extends Component
         }
         else{
             $newtitle=str_replace('سوال خود را درج کنید',$this->route,$formdefault->value('form'));
-            if($formdefault->value('id')==3)
-                $newtitle = str_replace('text','email',$newtitle);
-            if($formdefault->value('id')==4)
-                $newtitle = str_replace('text','number',$newtitle);
-            if($formdefault->value('id')==5)
-                $newtitle = str_replace('text','password',$newtitle);
-            if($this->max !== null)
-                $newtitle = str_replace('up',$this->max,$newtitle);
-            if($this->min !== null)
-                $newtitle=str_replace('dw',$this->min,$newtitle);
-            if($this->required == null)
-                $newtitle=str_replace('required',' ',$newtitle);
-            if($this->placeholder !== null)
-                $newtitle=str_replace('پاسخ خود را درج کنید',$this->placeholder,$newtitle);
+            if($formdefault->value('id') == 8){
+                $newtitle=str_replace('route','value.number',$newtitle);
+                $newtitle = str_replace('up',11,$newtitle);
+                $newtitle=str_replace('dw',11,$newtitle);
+                if($this->required == null)
+                    $newtitle=str_replace('required',' ',$newtitle);
+            }
+            else{
+                $newtitle=str_replace('route','value.{{ $value['.$key.'] }}',$newtitle);
+                if($formdefault->value('id')==3)
+                    $newtitle = str_replace('text','email',$newtitle);
+                if($formdefault->value('id')==4)
+                    $newtitle = str_replace('text','number',$newtitle);
+                if($formdefault->value('id')==5)
+                    $newtitle = str_replace('text','password',$newtitle);
+                if($this->max !== null)
+                    $newtitle = str_replace('up',$this->max,$newtitle);
+                if($this->min !== null)
+                    $newtitle=str_replace('dw',$this->min,$newtitle);
+                if($this->required == null)
+                    $newtitle=str_replace('required',' ',$newtitle);
+                if($this->placeholder !== null)
+                    $newtitle=str_replace('پاسخ خود را درج کنید',$this->placeholder,$newtitle);
+            }
             $collection['content']=$newtitle;
             $collection['key']=$key;
+            $collection['title']=$this->route;
+            
 
         }
         $forms[$key]=$collection;
@@ -96,6 +109,7 @@ class Index extends Component
               $key=>[
                 'content'=>  $collection['content'],
                   'key'=>$key,
+                  'title'=>$this->route
               ],
           ],
           'id_day'=>$day,
@@ -198,9 +212,8 @@ class Index extends Component
     public function render()
     {
         $defult=FormDefault::where('status',1)->first();
-        $Date=Date::latest()->first()->value('id');
+        $Date=Date::latest()->take(1)->value('id');
         $live=FormDay::where('id_day',$Date)->value('form');
-//        dd($defult->id);
         return view('livewire.admin.question.form.index',compact('defult','live'));
     }
 }

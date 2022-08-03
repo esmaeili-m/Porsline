@@ -1,4 +1,4 @@
-@section('title','لیست ادمین ها')
+@section('title','لیست  کاربران')
 <section class="content">
     <div class="container-fluid">
         <!-- Exportable Table -->
@@ -16,7 +16,7 @@
                                 <a class="search-box">
                                     <form  action="" onclick="event.preventDefault();">
                                         <label style="margin-right: 20px">جستجو :</label>
-                                        <input  wire:model.debounce.1000="search" type="text" class="search-box" placeholder="">
+                                        <input  wire:model.debounce.2000="search" type="text" class="search-box" placeholder="">
                                     </form>
                                 </a>
                             </div>
@@ -43,6 +43,10 @@
                                         <td>
                                             <a href="{{route('user.edit',$user)}}"><button class="btn tblActnBtn">
                                                     <i class="material-icons">mode_edit</i>
+                                                </button>
+                                            </a>
+                                            <a href="{{route('ShowUser.show',$user)}}"><button class="btn tblActnBtn">
+                                                    <i class="material-icons">assignment</i>
                                                 </button>
                                             </a>
                                             @if($user->name !== auth()->user()->name)

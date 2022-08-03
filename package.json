@@ -23,6 +23,7 @@
     "dependencies": {
         "@majidh1/jalalidatepicker": "^0.6.0",
         "ha-datetimepicker": "^1.3.0",
-        "persian-datepicker": "^1.2.0"
+        "persian-datepicker": "^1.2.0",
+        "sweetalert2": "^11.4.24"
     }
 }

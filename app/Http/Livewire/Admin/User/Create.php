@@ -19,6 +19,7 @@ class Create extends Component
         'user.name'=>['required', 'string', 'max:255'],
         'user.email'=>['required', 'string', 'email', 'max:255'],
         'user.role' =>['required', 'string', 'max:255'],
+        'user.phone' =>['required', 'string', 'max:255'],
 
     ];
 
@@ -30,6 +31,7 @@ class Create extends Component
             'name' => $this->user->name,
             'email' => $this->user->email,
             'role' => $this->user->role,
+            'phone' => $this->user->phone,
             'password' => Hash::make($this->user->pass)
         ]);
 

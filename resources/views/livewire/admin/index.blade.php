@@ -27,7 +27,7 @@
                 <div class="info-box7 l-bg-purple order-info-box7">
                     <div class="info-box7-block">
                         <h4 class="m-b-20">تعداد سوالات روز </h4>
-                        <h2 class="text-right"><i class="fas fa-file-alt pull-left"></i><span>70</span></h2>
+                        <h2 class="text-right"><i class="fas fa-file-alt pull-left"></i><span>{{count(\App\Models\FormDay::where('id_day',$date->id)->value('form'))}}</span></h2>
                         <p class="m-b-0">سوالات</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="info-box7 l-bg-cyan order-info-box7">
                     <div class="info-box7-block">
                         <h4 class="m-b-20">  افرادی که شرکت کرده اند. </h4>
-                        <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>200</span></h2>
+                        <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{\App\Models\Answer::where('day',$date->id)->count()}}</span></h2>
                         <p class="m-b-0">گزارش کار </p>
                     </div>
                 </div>

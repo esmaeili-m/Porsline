@@ -16,6 +16,10 @@ Route::get('/start',\App\Http\Livewire\Home\Index::class)->name('start');
 Route::get('/Question',\App\Http\Livewire\Home\Form\Quesitons::class)->name('Question');
 Route::get('/new',\App\Http\Livewire\Home\Form\Index::class)->name('new');
 Route::get('/notifications',\App\Http\Livewire\Home\Notifications::class)->name('notifications');
+Route::get('/user',\App\Http\Livewire\Admin\User\Index::class)->name('user');
+Route::get('/CreateUser',\App\Http\Livewire\Admin\User\Create::class)->name('CreateUser.index');
+Route::get('/user/show/{user}',\App\Http\Livewire\Admin\User\Show::class)->name('ShowUser.show');
+Route::get('/answer/view/{user}/{day}',\App\Http\Livewire\Admin\User\View::class)->name('view.answers');
 
 Route::middleware('auth')->group(function(){
      Route::get('/', \App\Http\Livewire\Admin\Index::class)->middleware(['auth'])->name('home');
@@ -38,7 +42,7 @@ Route::middleware('auth')->group(function(){
      Route::get('/reports',\App\Http\Livewire\Admin\Log\Index::class)->name('reports');
      Route::get('/trashed',\App\Http\Livewire\Admin\System\Trashed::class)->name('trashed');
      Route::get('/update/{system}',\App\Http\Livewire\Admin\System\Update::class)->name('update');
-     Route::get('/user',\App\Http\Livewire\Admin\User\Index::class)->name('user.index');
+//     Route::get('/user',\App\Http\Livewire\Admin\User\Index::class)->name('user.index');
      Route::get('/CreateUser',\App\Http\Livewire\Admin\User\Create::class)->name('CreateUser.index');
      Route::get('/edit/{user}',\App\Http\Livewire\Admin\User\Update::class)->name('user.edit');
  });
