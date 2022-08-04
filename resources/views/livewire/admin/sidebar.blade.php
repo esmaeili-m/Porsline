@@ -20,7 +20,7 @@
                 </a>
                 <ul class="ml-menu">
                     <li class="{{Request::routeIs('home')?'active':''}}">
-                        <a href="/">درخواست ها و اطلاعات</a>
+                        <a href="/dashboard">درخواست ها و اطلاعات</a>
                     </li>
                     <li class="{{Request::routeIs('question')?'active':''}}">
                         <a href="/question">ساخت پرسشنامه</a>

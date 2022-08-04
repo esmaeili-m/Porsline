@@ -5,7 +5,11 @@
     @livewireStyles
     <script src="{{mix('/js/app.js')}}"></script>
 </head>
-<body class="light rtl">
+<body class="light rtl" style="height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;">
 {{$slot}}
 @livewireScripts
 <livewire:admin.foot />

@@ -78,6 +78,14 @@ class FormDefaultTableSeeder extends Seeder
             'type'=>'text',
 
         ]);
+        FormDefault::create([
+            'form'=>'<label>متن خود را درج کنید</label><br>
+                    <div wire:ignore>
+                    <textarea rows="4" class="form-control no-resize" wire:model.defer="route" id="editor"  placeholder="پاسخ خود را درج کنید" > </textarea>
+                    </div>',
+            'status'=>0,
+            'type'=> 'textarea'
+        ]);
 
     }
 }

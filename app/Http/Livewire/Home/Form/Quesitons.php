@@ -15,14 +15,10 @@ class Quesitons extends Component
     use WithPagination;
     public $counter;
     public $size;
-    public $textfeild;
     public $textarea;
     public $options;
-    public $colection = [];
-    public  $value=[];
-    public  $number;
-//    public
-     
+    public $value= [];
+    public $number;
     public function mount()
     {
         $this->counter = 1;
@@ -31,12 +27,12 @@ class Quesitons extends Component
 
     public function createform()
     {
-//        $this->counter += $this->size;
-
+        
     }
 
     public function save()
     {
+
         $flat=Arr::flatten($this->value);
         Answer::create([
             'answer'=>$flat,
@@ -45,8 +41,16 @@ class Quesitons extends Component
             'time'=>'1'
         ]);
         $this->emit('toast', 'success', ' پاسخ ثبت گردید.');
-//        $flat[count($flat)]= now()->format('H:i:s');
+        $this->value=[];
+        $this->number='';
+        return redirect()->route('end');
     }
+    public function add($id)
+    {
+        $this->value['option']='option'.$id;
+    }
+    
+
     
     public function increment()
     {

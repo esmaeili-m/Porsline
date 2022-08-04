@@ -14,7 +14,7 @@
         <!-- Widgets -->
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div class="info-box7 l-bg-green order-info-box7">
+                <div class="info-box7 l-bg-purple order-info-box7">
                     <div class="info-box7-block">
                         <h4 class="m-b-20">تعداد اطلاعیه های روز</h4>
                         <h2 class="text-right"><i class="fas fa-file pull-left"></i><span>{{\App\Models\Notifications::where('day_id',$date->id)->count()}}</span></h2>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="col-lg-4 col-sm-6">
-                <div class="info-box7 l-bg-orange order-info-box7">
+                <div class="info-box7 l-bg-purple order-info-box7">
                     <div class="info-box7-block">
                         <div class="row">
                             <h3 class="m-b-20">افراد مجموعه </h3>
@@ -46,15 +46,44 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-sm-6">
-                <div class="info-box7 l-bg-cyan order-info-box7">
-                    <div class="info-box7-block">
-                        <h4 class="m-b-20">  افرادی که شرکت کرده اند. </h4>
-                        <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{\App\Models\Answer::where('day',$date->id)->count()}}</span></h2>
-                        <p class="m-b-0">گزارش کار </p>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-cyan order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/dashboard/answer" style="color:#ffffff; font-size: 18px;line-height:30px;   "> تمام افرادی که شرکت کرده اند </a> </h4>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{\App\Models\Answer::where('day',$date->id)->count()}}</span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-cyan order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/dashboard/notanswer" style="color:#ffffff; font-size: 18px;line-height:30px;   "> پرسنل مجموعه که شرکت نکرده اند.</a> </h4>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{ \App\Models\User::whereNotIn('phone',\App\Models\Answer::where('day',$date->id)->pluck('phone'))->count()}}</span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-cyan order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/dashboard/haveanswer" style="color:#ffffff; font-size: 18px;line-height:30px;   ">پرسنل مجموعه که شرکت کرده اند.</a> </h4>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{ \App\Models\User::whereIn('phone',\App\Models\Answer::where('day',$date->id)->pluck('phone'))->count()}}</span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-orange order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/dashboard/dublicate" style="color:#ffffff; font-size: 18px;line-height:30px;">پاسخ های تکراری</a> </h4>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span></span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
+                    </div>
+                </div>
+         
+
         </div>
         <!-- #END# Widgets -->
 

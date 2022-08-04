@@ -45,6 +45,10 @@
                                     <a href="#" wire:click="enable(8)">شماره تلفن<span class="pull-right badge bg-blue"><i
                                                     class="fas fa-plus"></i></span></a>
                                 </li>
+                                <li class="form_bal_password">
+                                    <a href="#" wire:click="enable(9)">متن بدون سوال<span class="pull-right badge bg-blue"><i
+                                                    class="fas fa-plus"></i></span></a>
+                                </li>
 
                                 <li class="form_bal_button">
                                     <a href="javascript:;">دکمه</a>

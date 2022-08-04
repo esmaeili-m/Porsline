@@ -1,5 +1,16 @@
-<div>
-    <div class="alert alert-info">
-        <strong> آراد برندینگ |</strong> Arad-Branding
-    </div>
+<div style="
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+">
+    
+        <div style="margin:0; height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;" class="alert alert-info">
+            <h4   > آراد برندینگ | Arad-Branding</h4>
+        </div>
+
+
 </div>

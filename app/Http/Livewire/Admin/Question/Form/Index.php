@@ -67,6 +67,11 @@ class Index extends Component
             $collection['type']='sliding';
 
         }
+        elseif($formdefault->value('id') == 9){
+            $collection['content']=$this->route;
+            $collection['key']=$key;
+            $collection['title']=$this->route;
+        }
         else{
             $newtitle=str_replace('سوال خود را درج کنید',$this->route,$formdefault->value('form'));
             if($formdefault->value('id') == 8){
@@ -96,7 +101,6 @@ class Index extends Component
             $collection['content']=$newtitle;
             $collection['key']=$key;
             $collection['title']=$this->route;
-            
 
         }
         $forms[$key]=$collection;
@@ -140,7 +144,7 @@ class Index extends Component
          if($id == 6 || $id == 7){
              Multichoise::truncate();
          }
-         if($id == 2){
+         if($id == 2 || $id == 9){
              return redirect()->route('FormCreate');
          }
      }

@@ -7,7 +7,7 @@
     <script src="{{mix('/js/app.js')}}"></script>
 </head>
 
-<body class="light rtl">
+<body class="light rtl" >
 
 <livewire:admin.header/>
 <livewire:admin.sidebar/>
