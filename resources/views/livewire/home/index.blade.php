@@ -1,5 +1,20 @@
 @section('title','شروع')
-<div class="">
+<div style="
+    position: fixed;
+    width: 100%;
+    top: 0;
+    ;
+">
+    <div style="margin:0; height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center; color:  black" class="alert alert-black">
+        <div class="pull-left">
+            <img src="{{asset('images/aradbranding.png')}}" style="width:75px" alt="arad">
+        </div>
+    </div>
+</div>
+<div class="text-center">
     <div class="row">
         <h3 class="mt-5">{{$notfication->title}}</h3>
     </div>

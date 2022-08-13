@@ -8,18 +8,17 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $search;
+
     use WithPagination;
-    protected $queryString = ['search'];
     public function DeleteUser($id)
     {
         $user = User::find($id);
         $user->delete();
+        $this->emit('toast', 'success', 'کاربر حذف گردید.');
     }
     public function render()
     {
-        $users=User::
-        where('name','LIKE',"%{$this->search}%")->paginate(15);
+        $users=User::all();
         return view('livewire.admin.user.index',compact('users'));
     }
 }

@@ -1,4 +1,4 @@
-@section('title','افزودن ادمین')
+@section('title','افزودن کاربر')
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">

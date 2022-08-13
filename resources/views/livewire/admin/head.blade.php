@@ -6,6 +6,7 @@
     |
     @yield('title')
 </title>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
 <link href="{{asset('css/app.min.css')}}" rel="stylesheet">
 <link href="{{asset('js/bundles/materialize-rtl/materialize-rtl.min.css')}}" rel="stylesheet">

@@ -42,35 +42,35 @@
                         </a>
                     </div>
                 </form>
-                <form action="{{route('register.store')}}" id="register" tabindex="502" method="Post">
-                    @csrf
-                    @method('post')
-                    <h3>ثبت نام</h3>
-                    <div class="name">
-                        <input name="name" type="text">
-                        <label>نام کامل</label>
-                    </div>
-                    <div class="mail">
-                        <input name="email" type="email">
-                        <label>ایمیل</label>
-                    </div>
-                    <div class="mail">
-                        <input name="role" type="text">
-                        <label>نقش</label>
-                    </div>
+{{--                <form action="{{route('register.store')}}" id="register" tabindex="502" method="Post">--}}
+{{--                    @csrf--}}
+{{--                    @method('post')--}}
+{{--                    <h3>ثبت نام</h3>--}}
+{{--                    <div class="name">--}}
+{{--                        <input name="name" type="text">--}}
+{{--                        <label>نام کامل</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="mail">--}}
+{{--                        <input name="email" type="email">--}}
+{{--                        <label>ایمیل</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="mail">--}}
+{{--                        <input name="role" type="text">--}}
+{{--                        <label>نقش</label>--}}
+{{--                    </div>--}}
 
-                    <div class="passwd">
-                        <input id="pass" name="password" type="password">
-                        <label for="pass">رمزعبور</label>
-                    </div>
-                    <div class="passwd">
-                        <input id="pass" name="password_confirmation" type="password">
-                        <label for="pass">رمزعبور</label>
-                    </div>
-                    <div class="submit">
-                        <button type="submit" class="dark">ثبت نام</button>
-                    </div>
-                </form>
+{{--                    <div class="passwd">--}}
+{{--                        <input id="pass" name="password" type="password">--}}
+{{--                        <label for="pass">رمزعبور</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="passwd">--}}
+{{--                        <input id="pass" name="password_confirmation" type="password">--}}
+{{--                        <label for="pass">رمزعبور</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="submit">--}}
+{{--                        <button type="submit" class="dark">ثبت نام</button>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
             </div>
         </div>
     </div>

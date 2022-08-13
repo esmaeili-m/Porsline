@@ -9,7 +9,10 @@ class Multichoise extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'options'
+        'options',
+        'status',
+        'key',
+        'day'
     ];
     protected $casts=[
         'options'=>'array'

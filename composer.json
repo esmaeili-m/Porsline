@@ -6,14 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "filament/forms": "2.0",
+        "asantibanez/livewire-charts": "^2.4",
         "guzzlehttp/guzzle": "^7.2",
         "hekmatinasser/verta": "^8.0",
         "kris/laravel-form-builder": "^1.51",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "morilog/jalali": "3.*",
+        "stevebauman/location": "^6.5",
+        "torann/geoip": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

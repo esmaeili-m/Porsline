@@ -10,8 +10,8 @@ class Index extends Component
     public function render()
     {
         $form=NewForm::latest()->take(1)->value('form');
-        $form=json_decode($form);
-        $form=$form->form1658952734;
+        $
+        $form='oninput="this.className = "';
         return view('livewire.home.form.index',compact('form'))->layout('layouts.home');
     }
 }

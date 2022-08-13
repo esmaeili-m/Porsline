@@ -3,51 +3,76 @@
     width: 85%;
 ">
     <?php
-    $current=1;
+    $current = 1;
     ?>
+       
     <div class="col-md-12">
-          <div class="col-12">
-              <section class="content" style="
+        <div class="col-12">
+            <section class="content" style="
     margin: 0;
 ">
-                  <div class="container-fluid">
-                      <form wire:submit.prevent="createform">
-                          <div class="row clearfix">
-                              <div class="col-md-12">
-                                  <div class="form-group">
-                                      <div class="form-line">
-                                        @if(!is_array($form[$counter]['content']))
-                                              {!! $form[$counter]['content'] !!}
-                                          @else
-                                               {{$form[$counter]['title']}}
-                                              @foreach($form[$counter]['content'] as $i)
-                                                  {!! $i['option'] !!}
-                                              @endforeach
-                                          @endif
-                                          @if($counter < count($form))
-                                              <a wire:click="increment">
-                                                  <button type="reset"   class="btn-hover color-1">بعدی</button>
-                                                  @error('formdefult.route1') <span class="error">{{ $message }}</span> @enderror
-                                              </a>
-                                          @endif
-                                            @if($counter == count($form))
-                                                <button type="submit"   wire:click="save" class="btn-hover color-3">پایان</button>
-                                            @endif
-                                          @if($counter >= 2)
-                                              <button  type="reset"  wire:click="decrement" class="btn-hover color-2">قبلی</button>
-                                          @endif
+                <div class="container-fluid">
+                    <form wire:submit.prevent="createform">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <div>
+                                            @if (session()->has('message'))
+                                                <div class="alert bg-pink alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    {{ session('message') }}
 
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
+                                                </div>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    @if(!is_array($form[$counter]['content']))
+                                        {!! $form[$counter]['content'] !!}
+                                    @else
+                                        <div class="mb-5">
+                                            {!! $form[$counter]['title'] !!}
+                                        </div>
 
-                  </div>
-              </section>
+                                        @foreach($form[$counter]['content'] as $i)
+                                            {!! $i['option'] !!}
+                                        @endforeach
+                                    @endif
+                                    <div style="font-size:10px" class="m-2 row">
+                                        برای رفتن به سوال بعد از دکمه بعدی استفاده کنید
+                                    </div>
+                                    <span class="error">
+                                                     @error('value.number') {{$message}} @enderror
+                                             </span>
 
-          </div>
-       </div>
+                                    <div class="row">
+                                        @if($counter < count($form))
+                                            <button onclick="submit" type="submit"  class="btn-hover color-1">بعدی
+                                            </button>
+                                        @endif
+                                        @if($counter == count($form))
+                                            <button type="submit"  class="btn-hover color-3">پایان
+                                            </button>
+                                        @endif
+                                        @if($counter >= 2)
+                                            <button type="reset" wire:click="decrement" class="btn-hover color-2">قبلی
+                                            </button>
+                                        @endif
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+
+        </div>
     </div>
-
+</div>
 

@@ -31,12 +31,11 @@
                                 </div>
                             </div>
                             <a href="{{route('NotificationsStartDay')}}">
-                                <button type="submit" class="btn-hover btn-border-radius color-2 ">+ صفحه شروع</button>
+                                <button type="reset" class="btn-hover btn-border-radius color-2 ">+ صفحه شروع</button>
                             </a>
                             <a href="{{route('FormCreate')}}">
                                 <button  type="submit" class="btn-hover btn-border-radius color-3 ">+ افزودن فرم</button>
                             </a>
-                            <button type="submit" class="btn-hover btn-border-radius color-7 ">+ افرودن لینک ها</button>
                              <a href="{{route('NotificationsEndDay')}}">
                             <button type="submit" class="btn-hover btn-border-radius color-8 ">+ صفحه پایان</button>
                         </a>

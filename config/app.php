@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tehran',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +177,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class
+        Collective\Html\HtmlServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
+                                                                    
 
     ],
 
@@ -195,6 +198,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Form'        => Collective\Html\FormFacade::class ,
+        'Location' => 'Stevebauman\Location\Facades\Location',
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class, 
         'Datatables'  => yajra\Datatables\Datatables::class ,
     ])->toArray(),
 

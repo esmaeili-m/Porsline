@@ -1,15 +1,14 @@
 require('./bootstrap');
-
+import ApexCharts from 'apexcharts'
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
-
 Alpine.start();
 let Swal = require('sweetalert2');
 
 const Toast = Swal.mixin({
     toast: true,
-    position: 'bottom',
+    position: 'top',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,

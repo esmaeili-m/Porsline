@@ -82,6 +82,24 @@
                         </div>
                     </div>
                 </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-orange order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/count" style="color:#ffffff; font-size: 18px;line-height:30px;">تعداد افرادی که در ماه بیش تر از 4 بار گزارش کار نداده اند</a> </h4>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span></span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="info-box7 l-bg-orange order-info-box7">
+                        <div class="info-box7-block">
+                            <h4   class="m-b-20"> <a href="/chart" style="color:#ffffff; font-size: 18px;line-height:30px;">آنالیز نموداری گزارش کار های امروز</a> </h4> <br><br>
+                            <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span></span></h2>
+                            <p class="m-b-0">گزارش کار </p>
+                        </div>
+                    </div>
+                </div>
          
 
         </div>

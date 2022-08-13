@@ -13389,11 +13389,11 @@ fieldset[disabled] .form-control {
 }
 
 .switch label input[type=checkbox]:checked + .lever.switch-col-blue {
-	background-color: rgba(33, 150, 243, 0.5)
+	background-color: #d4af37
 }
 
 .switch label input[type=checkbox]:checked + .lever.switch-col-blue:after {
-	background-color: #2196f3
+	background-color: #d4af37
 }
 
 .switch label input[type=checkbox]:checked:not(:disabled) ~ .lever.switch-col-light-blue:active:after {
@@ -20026,6 +20026,12 @@ table.shoping-cart-table .text-price {
 .alert-info {
 	background-color: rgba(44, 168, 255, 0.8)
 }
+.alert-per {
+	background-color:  #be6779
+}
+.alert-black {
+	background-color:  black
+}
 
 .alert-warning {
 	background-color: rgba(255, 178, 54, 0.8)
@@ -20994,11 +21000,11 @@ span.badge {
 }
 
 .btn-hover.color-3 {
-	background-image: linear-gradient(to left, #667eea, #764ba2, #6b8dd6, #8e37d7);
-	-webkit-box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-	-moz-box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-	-ms-box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-	box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75)
+	background-image: linear-gradient(to left, #d4af37, #d4af37, #d4af37, #d4af37);
+	-webkit-box-shadow: 0 4px 15px 0 #d4af37;
+	-moz-box-shadow: 0 4px 15px 0 #d4af37;
+	-ms-box-shadow: 0 4px 15px 0 #d4af37;
+	box-shadow: 0 4px 15px 0 #d4af37
 }
 
 .btn-hover.color-4 {

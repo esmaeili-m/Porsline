@@ -1,8 +1,8 @@
 @section('title','ساخت پرسش نامه')
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="card">
                     <div class="body">
                         <div id="mail-nav">
@@ -10,7 +10,7 @@
                                     class="btn btn-success waves-effect m-b-15">{{\App\Models\Date::latest()->take(1)->value('date')}}</button>
                             <ul class="" id="mail-folders">
                                 <li>
-                                    <a wire:click="enable(1)" href="javascript:;" title="ارسال">فیلد متن <span
+                                    <a wire:click="enable(1)"    title="ارسال">فیلد متن <span
                                                 class="pull-right badge bg-blue"><i class="fas fa-plus"></i></span></a>
                                 </li>
                                 <li>
@@ -144,16 +144,21 @@
                                                     </button>
                                                 </form>
                                             </div>
-                                            <?php
-                                            $option= \App\Models\Multichoise::latest()->take(1)->value('options')
-                                            ?>
-                                            @if($option !== null)
-                                            @foreach($option as $i )
-                                                    <a wire:click="add({{$i['option']}})">
-                                                    {!! $i['option']!!}
-                                                    </a>
-                                            @endforeach
-                                            @endif
+                                            <div class="col-8">
+                                                <div class="row">
+                                                <?php
+                                                    $option= \App\Models\Multichoise::latest()->take(1)->where('status',1)->value('options')
+                                                    ?>
+                                                    @if($option !== null)
+                                                        @foreach($option as $i )
+                                                            <a wire:click="add({{$i['option']}})">
+                                                                {!! $i['option']!!}
+                                                            </a>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -193,11 +198,13 @@
                                                         @else
                                                              @if(isset($i['title'])){{$i['title']}} @endif
                                                                      @if(isset($i['type']) == 'sliding' )
-                                                                            @foreach($i['content'] as $b )
-                                                                                <div class="row">
+                                                                     <div class="row">
+
+                                                                     @foreach($i['content'] as $b )
                                                                                      {!! $b['option'] !!}
-                                                                                </div>
+
                                                                             @endforeach
+                                                                                </div>
                                                                     @else
                                                                             <div class="row">
                                                                                 @foreach($i['content'] as $b )
@@ -222,7 +229,6 @@
                 @endforeach
             @endif
         </div>
-
     </div>
 </section>
 <script>

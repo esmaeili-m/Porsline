@@ -11,22 +11,19 @@ class Update extends Component
     public User $user;
 
     protected $rules = [
-        'user.pass' =>['required', 'string', 'max:255'],
+        
         'user.name'=>['required', 'string', 'max:255'],
         'user.email'=>['required', 'string', 'email', 'max:255'],
         'user.role' =>['required', 'string', 'max:255'],
+        'user.phone' =>['required', 'string', 'max:255'],
 
     ];
 
     public function update(){
+        $this->validate();
+        User::where('id',$this->user->id)
+            ->update(['name' => $this->user->name, 'phone'=>$this->user->phone, 'role'=>$this->user->role, 'email'=>$this->user->email]);
 
-        $system =User::where('id',$this->user->id)->get();
-        $this->user->update($this->validate());
-        Log::create([
-            'name'=>auth()->user()->name,
-            'url'=>'ویرایش ادمین'.' '.':'.' '.$this->user->name,
-            'action'=>'ویرایش',
-        ]);
         return redirect(route('user.index'));
     }
     public function render()

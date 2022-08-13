@@ -5,25 +5,16 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">
-                        <div class="row">
-                            <a href="/CreateUser">
-                                <button href=""  class="btn-hover btn-border-radius color-5">
-                                    افزودن ادمین
-                                </button>
-                            </a>
-                            <div class="col-4">
-                                <a class="search-box">
-                                    <form  action="" onclick="event.preventDefault();">
-                                        <label style="margin-right: 20px">جستجو :</label>
-                                        <input  wire:model.debounce.2000="search" type="text" class="search-box" placeholder="">
-                                    </form>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
+
+
+                       
                     <div  class="body">
+                        <a href="/CreateUser">
+                            <button href=""  class="btn-hover btn-border-radius color-5">
+                                افزودن کاربر
+                            </button>
+                        </a>
                         <div class="table-responsive">
                             <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                 <thead >

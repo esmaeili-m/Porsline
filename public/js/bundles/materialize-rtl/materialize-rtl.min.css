@@ -6059,7 +6059,7 @@ textarea.materialize-textarea {
 
 form p {
     margin-bottom: 10px;
-    text-align: left
+    text-align: right;
 }
 
 form p:last-child {

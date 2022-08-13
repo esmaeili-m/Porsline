@@ -1,4 +1,4 @@
-
+ @section('title','پاسخ نامه')
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
@@ -13,9 +13,18 @@
                     <div class="body table-responsive">
                         <table class="table table-striped">
                             <thead>
+                            @foreach($collection as $i)
+                                @if(isset($i['title']))
+
+                                    <th>{!! $i['title'] !!}</th>
+
+                                @endif
+
+                            @endforeach
                             <tr>
                                 @foreach($collection as $b )
-                                    <th>{!! $b['title'] !!}</th>
+                                    @if(isset($i['title']))
+                                    @endif
                                 @endforeach
                             </tr>
                             </thead>

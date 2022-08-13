@@ -20,9 +20,9 @@ class FormDefaultTableSeeder extends Seeder
     }
     private function FormDefault(){
         FormDefault::create([
-          'form'=>  '<label>سوال خود را درج کنید</label><br>
-                    <input  required maxlength="up" minlength="dw"  wire:model.lazy="route"   
-                    type="text"  class="form-control" placeholder="پاسخ خود را درج کنید">',
+          'form'=>  '<label>سوال خود را درج کنید</label>
+                    <input autofocus name="route" required maxlength="up" minlength="dw"  wire:model.lazy="route"   
+                    type="text"  class  placeholder="پاسخ خود را درج کنید" >',
           'status'=>0 ,
           'type'=>'text',
 
@@ -30,28 +30,28 @@ class FormDefaultTableSeeder extends Seeder
         FormDefault::create([
           'form'=>'<label>سوال خود را درج کنید</label><br>
                     <div wire:ignore>
-                    <textarea required maxlength="up" minlength="dw" rows="4" class="form-control no-resize" wire:model.defer="route" id="editor"  placeholder="پاسخ خود را درج کنید" > </textarea>
+                    <textarea autofocus style="background-color: #f1f2f7" name="route" required maxlength="up" minlength="dw" rows="10" class="form-control no-resize" wire:model.defer="route" id="editor"  placeholder="پاسخ خود را درج کنید" > </textarea>
                     </div>',
           'status'=>0,
            'type'=> 'textarea'
         ]);
         FormDefault::create([
           'form'=>'<label>سوال خود را درج کنید</label><br>
-                    <input id="email"  required   wire:model.lazy="route"   
+                    <input name="route" id="email"  required   wire:model.lazy="route"   
                     type="text"  class="form-control" placeholder="پاسخ خود را درج کنید">',
           'status'=>0,
           'type'=> 'email',
         ]);
         FormDefault::create([
           'form'=>'<label>سوال خود را درج کنید</label><br>
-                    <input  required   wire:model.lazy="route"   
+                    <input  name="route"  required   wire:model.lazy="route"   
                     type="text"   class="form-control" placeholder="پاسخ خود را درج کنید">',
           'status'=>0,
           'type'=> 'number',
         ]);
         FormDefault::create([
           'form'=>'<label>سوال خود را درج کنید</label><br>
-                    <input  required   wire:model.lazy="route"   
+                    <input name="route"  required   wire:model.lazy="route"   
                     type="text"   class="form-control" placeholder="پاسخ خود را درج کنید">',
           'status'=>0,
           'type'=> 'password',
@@ -72,7 +72,7 @@ class FormDefaultTableSeeder extends Seeder
         ]);
         FormDefault::create([
             'form'=>  '<label>سوال خود را درج کنید</label><br>
-                    <input maxlength="up" minlength="dw"  required    wire:model.lazy="route"   
+                    <input   maxlength="up" minlength="dw"  required name="route"    wire:model.lazy="route"   
                     type="text"  class="form-control" placeholder="پاسخ خود را درج کنید">',
             'status'=>0 ,
             'type'=>'text',

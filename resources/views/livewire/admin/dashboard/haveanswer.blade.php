@@ -24,22 +24,55 @@
                                                aria-describedby="DataTables_Table_0_info">
                                             <thead>
                                             <tr role="row">
-                                                @foreach($collection as $i)
-                                                    @if(isset($i['title']))
+                                                @if($collection !== null)
+                                                    @foreach($collection as $i)
+
+                                                        @if(isset($i['title']) && $i['ask'] == 'null') )
+
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="نام: activate to sort column descending"
+                                                        >{!! $i['title'] !!}
+                                                        </th>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                                     <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
                                                         rowspan="1" colspan="1" aria-sort="ascending"
                                                         aria-label="نام: activate to sort column descending"
-                                                    >{{$i['title']}}
+                                                    >شروع پرسشنامه
                                                     </th>
-                                                    @endif
-                                                @endforeach
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="نام: activate to sort column descending"
+                                                    >پایان پرسش نامه
+                                                    </th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="نام: activate to sort column descending"
+                                                    >ای پی
+                                                    </th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="نام: activate to sort column descending"
+                                                    >نوع مرورگر و دستگاه
+                                                    </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach( $answer as $i)
                                                 <tr role="row" class="odd">
-                                                    @foreach( $i as $b)
-                                                        <td>{{$b}}</td>
+
+                                                    @foreach( $i['answer'] as $b)
+
+                                                        @if (!is_array($b))
+                                                            <td> {{ $b }} </td>
+                                                        @endif
+                                                        @if(is_array($b))
+                                                            <td> {{ $b['countryName']}}
+                                                                {{$b['cityName']}}
+                                                            </td>
+                                                        @endif
                                                     @endforeach
                                                 </tr>
                                             @endforeach
@@ -47,9 +80,10 @@
                                             </tbody>
 
                                         </table>
+
                                     </div>
                                 </div>
-
+                                {{$answer->links()}}
                             </div>
                         </div>
                     </div>
