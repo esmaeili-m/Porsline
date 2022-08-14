@@ -27,7 +27,6 @@ class welcomeController extends Controller
 
     public function store(request $request)
     {
-        
         $falt=Arr::flatten($request->all());
         unset($falt['0']);
         $falt['end']=Verta()->format('H:i:s');

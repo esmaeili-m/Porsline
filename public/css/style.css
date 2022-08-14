@@ -11397,6 +11397,32 @@ input[type="radio"] {
 	padding: 0;
 	margin: 0;
 }
+#regForm{
+	width:60%
+}
+@media screen and (max-width: 768px) {
+	#regForm{
+		width:90%
+	}
+}
+
+
+
+.radio-grid {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	gap: 0 10px;
+}
+
+.radio-grid > * {
+	max-width: 100%;
+	padding:0;
+}
+@media screen and (max-width: 768px){
+	.radio-grid{
+		grid-template-columns: repeat(2,1fr);
+	}
+}
 
 .radio-label {
 	padding: 10px;

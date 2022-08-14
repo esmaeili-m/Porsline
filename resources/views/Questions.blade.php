@@ -21,39 +21,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <link href="{{asset('css/pages/extra_pages.css')}}" rel="stylesheet" /><script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <link href="{{asset('Home/css/home.css')}}" rel="stylesheet" />
- <style>
-     .radio-holder {
-         display: flex;
-         gap: 5px;
-     }
 
-     input[type="radio"] {
-         display: none;
-         width: auto;
-         padding: 0;
-         margin: 0;
-     }
-
-     .radio-label {
-         padding: 10px;
-         border: 1px solid #bbb;
-         border-radius: 10px;
-         transition: 0.3s ease;
-         cursor: pointer;
-         margin-top: 5px;
-     }
-     .radio-label:hover {
-         color: #b76e79;
-         border-color: #b76e79;
-     }
- </style>
-<body  style=" height:100vh; display: flex; justify-content: center;align-items: center; ">
-<div style="
-    position: fixed;
-    width: 100%;
-    top: 0;
-    ;
-">
+<body  style=" height:100vh; display: flex; align-items: center;flex-direction: column ">
+<div style="width: 100%;">
     <div style="margin:0; height: 75px;
         display: flex;
         align-items: center;
@@ -64,54 +34,62 @@
         </div>
     </div>
 </div>
-@if($form !== null)
-    <form  id="regForm" action="{{route('Question.store')}}" method="post" style="  width:60%;">
-        @csrf
+<div class="form-holder" style="
+width: 100%;
+flex: 1 0 0;
+display: flex;
+justify-content: center;
+align-items: center;">
+    @if($form !== null)
+        <form  id="regForm" action="{{route('Question.store')}}" method="post" >
+            @csrf
 
-        @foreach($form as $i)
+            @foreach($form as $i)
 
-            <div class="tab">
-                @if(!is_array($i['content']))
+                <div class="tab">
+                    @if(!is_array($i['content']))
 
-                    {!! $i['content']!!}
-                @endif
-                @if(is_array($i['content']))
+                        {!! $i['content']!!}
+                    @endif
+                    @if(is_array($i['content']))
 
-                    {!! $i['title'] !!}
-                    <br>
-                    <div class="row">
+                        {!! $i['title'] !!}
+                        <br>
+                        <div class="row radio-grid">
 
 
-                        @foreach($i['content'] as $b)
-                            <div class="col-4" >
-                                {!! $b['option'] !!}
-                            </div>
-                        @endforeach
-                    </div>
+                            @foreach($i['content'] as $b)
+                                <div class="col-4 " >
+                                    {!! $b['option'] !!}
+                                </div>
+                            @endforeach
+                        </div>
 
-                @endif
-            </div>
-        @endforeach
+                    @endif
+                </div>
+            @endforeach
 
-        <div >
-            <input name="start" value="{{verta()->format('H:i:s')}}" type="hidden">
-            <div style="
+            <div >
+                <input name="start" value="{{verta()->format('H:i:s')}}" type="hidden">
+                <div style="
             display: flex;
         flex-direction: column;">
-                <div class="btns" >
-                    <button style="background-color: #d4af37;" type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn-hover ">قبلی</button>
+                    <div class="btns" >
+                        <button style="background-color: #d4af37;" type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn-hover ">قبلی</button>
 
-                    <button style="background-color:#be6779"  type="button" id="nextBtn" onclick="nextPrev(1)"  class="btn-hover ">بعدی</button>
-                </div>
-                <div style="align-self: center;">
-                    @foreach($form as $i)
-                        <span class="step"></span>
-                    @endforeach
+                        <button style="background-color:#be6779"  type="button" id="nextBtn" onclick="nextPrev(1)"  class="btn-hover ">بعدی</button>
+                    </div>
+                    <div style="align-self: center;">
+                        @foreach($form as $i)
+                            <span class="step"></span>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-@endif
+        </form>
+    @endif
+</div>
+
 <!--<div style="-->
 <!--    position: fixed;-->
 <!--    width: 100%;-->

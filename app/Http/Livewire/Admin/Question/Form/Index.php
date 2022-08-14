@@ -136,7 +136,7 @@ class Index extends Component
       }
 
       if($formdefault->value('id') == 6 || $formdefault->value('id') == 7){
-          $options=Multichoise::latest()->take(1)->update(['status'=>1,'key'=>$key]);
+          $options=Multichoise::latest()->take(1)->update(['status'=>0,'key'=>$key]);
       }
         $this->route='';
         $this->placeholder='';
@@ -188,7 +188,7 @@ class Index extends Component
 
       public function addoption()
       {
-        $option=Multichoise::latest()->take(1);
+        $option=Multichoise::where('status',1)->latest()->take(1);
         $id_form=FormDefault::where('status',1)->value('id');
         if ($option->count() == 0){
             $key='1';
@@ -232,6 +232,7 @@ class Index extends Component
         $colection['option']=$name;
         $colection['name']=$this->option;
         $options[$key] =$colection;
+
        if ($option->count() == 0){
            Multichoise::create([
                'status'=>1,
@@ -252,6 +253,7 @@ class Index extends Component
                'options' => $options,
            ]);
        }
+      
         $this->option='';
      }
 //     ----------------------------------->deleteoptionform
