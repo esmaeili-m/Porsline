@@ -86,7 +86,7 @@ class Quesitons extends Component
     public function render()
     {
         $day=Date::latest()->take(1)->value('id');
-        $form=FormDay::where('id_day',$day)->value('form');
+        $form=FormDay::where('ask',1)->where('id_day',$day)->value('form');
         return view('livewire.home.form.quesitons',compact('form'))->layout('layouts.home');
     }
 }

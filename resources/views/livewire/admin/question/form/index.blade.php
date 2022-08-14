@@ -6,8 +6,13 @@
                 <div class="card">
                     <div class="body">
                         <div id="mail-nav">
-                            <button type="button"
-                                    class="btn btn-success waves-effect m-b-15">{{\App\Models\Date::latest()->take(1)->value('date')}}</button>
+                            <div class="row">
+                                <button type="button"
+                                        class="btn btn-success waves-effect mr-2 m-b-15">{{\App\Models\Date::latest()->take(1)->value('date')}}</button>
+                                <button type="button" wire:click="statusform"
+                                        class="btn btn-danger waves-effect mr-2 m-b-15">ثبت نهایی فرم </button>
+                            </div>
+
                             <ul class="" id="mail-folders">
                                 <li>
                                     <a wire:click="enable(1)"    title="ارسال">فیلد متن <span
@@ -196,7 +201,8 @@
                                                         @if(!is_array($i['content']))
                                                             {!! $i['content'] !!}
                                                         @else
-                                                             @if(isset($i['title'])){{$i['title']}} @endif
+                                                             @if(isset($i['title']))
+                                                            {!! $i['title'] !!} @endif
                                                                      @if(isset($i['type']) == 'sliding' )
                                                                      <div class="row">
 

@@ -74,6 +74,7 @@ class Index extends Component
             $collection['key']=$key;
             $collection['ask']='ask';
             $collection['title']=$this->route;
+
         }
         else{
             $newtitle=str_replace('سوال خود را درج کنید',$this->route,$formdefault->value('form'));
@@ -107,16 +108,14 @@ class Index extends Component
             $collection['content']=$newtitle;
             $collection['key']=$key;
             $collection['title']=$this->route;
-                $collection['ask']='null';
-            
+            $collection['ask']='null';
         }
         $forms[$key]=$collection;
-
       if(is_null($day)){
          return abort(404);
       }
       if(is_null($form->value('id'))){
-       $a=FormDay::create([
+       FormDay::create([
           'form'=>[
               $key=>[
                 'content'=>  $collection['content'],
@@ -202,25 +201,33 @@ class Index extends Component
         $colection['key']=$key;
         if($id_form == 6){
             $name='
-                    <a  wire:click=add('.$key.') href="#">
-                 <div class="form-check form-check-radio">
-                            <label>
-                <input value="'.$this->option.'" name="group1" type="radio">
-                         <span>'.$this->option.'</span>
-                            </label>
-                    </div>
-                    </a>
+                  <a  wire:click=add('.$key.') href="#">
+                  <div class="radio-holder">
+          <input
+            type="radio"
+            id="'.$this->option.'"
+            name="fav_language"
+            value="'.$this->option.'"
+                             />
+          <label class="radio-label" for="'.$this->option.'">'.$this->option.'</label>
+        </div>
+        </a>
+                    
             
             ';
         }else
             $name='
             <a  wire:click=add('.$key.') href="#">
-            <div class="switch">
-                                            <label> '.$this->option.'
-                                                <input name="'.$this->option.'" type="checkbox" >
-                                                <span class="lever switch-col-blue"></span>
-                                            </label>
-                                        </div></a>
+                  <div class="radio-holder">
+          <input
+            type="radio"
+            id="'.$this->option.'"
+            name="fav_language"
+            value="'.$this->option.'"
+                             />
+          <label class="radio-label" for="'.$this->option.'">'.$this->option.'</label>
+        </div>
+        </a>
             ';
         $colection['option']=$name;
         $colection['name']=$this->option;
@@ -260,12 +267,20 @@ class Index extends Component
                    ]);
                }
             }
+
+    public function statusform()
+    {
+        FormDay::where('ask',0)->latest()->take(1)->update(['ask'=> 1]);
+        $this->emit('toast', 'success', ' فرم ثبت گردید.');
+
+
+    }
     public function render()
     {
         $defult=FormDefault::where('status',1)->first();
         $Date=Date::latest()->take(1)->value('id');
         $live=FormDay::where('id_day',$Date)->value('form');
-//        dd($live);
+
         return view('livewire.admin.question.form.index',compact('defult','live'));
     }
 }

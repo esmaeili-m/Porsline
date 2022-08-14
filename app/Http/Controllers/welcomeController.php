@@ -21,12 +21,13 @@ class welcomeController extends Controller
     public function index() {
         
         $day=Date::latest()->take(1)->value('id');
-        $form=FormDay::where('id_day',$day)->value('form');
+        $form=FormDay::where('ask',1)->where('id_day',$day)->latest()->take(1)->value('form');
         return view('Questions',compact('form'));
     }
 
     public function store(request $request)
     {
+        
         $falt=Arr::flatten($request->all());
         unset($falt['0']);
         $falt['end']=Verta()->format('H:i:s');

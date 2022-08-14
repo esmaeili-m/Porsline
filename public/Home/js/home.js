@@ -10,7 +10,13 @@ const Toast = Swal.mixin({
         toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
 })
-
+const radios = document.querySelectorAll('input[type="radio"]');
+for (const radio of radios) {
+    radio.addEventListener("click", () => {
+        console.log(`${radio.value} is selected`);
+        nextPrev(1);
+    });
+}
 
 document.addEventListener('keyup',(event) =>{
     if(event.key === "ArrowLeft") {

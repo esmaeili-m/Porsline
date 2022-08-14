@@ -34,91 +34,14 @@
                     </div>
                 </div>
                 @endif
-                @if($this->chart !== 0)
-                          @if($this->chart == 1)
-                            <div class="card">
-                                <div class="header">
-                                    <h2>
-                                            1
-                                    </h2>
-                                </div>
-                                <div class="body">
-
-                                    <div id="chart">
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                    @elseif($this->chart == 2)
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                نمودار های گزارش کار
-                            </h2>
-                        </div>
-                        <div class="body">
-                                <div id="chart2">
-
-                                 </div>
-
-                        </div>
-                    </div>
-
-                    @else
-                        <div class="card">
-                    <div class="header">
-                        <h2>
-                            نمودار های گزارش کار
-                        </h2>
-                    </div>
-                    <div class="body">
-
-                        <div id="chart3">
-
-                        </div>
-
-                    </div>
-                </div>
-                              @endif
-                 @endif
+               
             </div>
         </div>
 
 
-        <div class="card">
-            <div class="header">
-                <h2>
-                    نمودار های گزارش کار
-                </h2>
-            </div>
-            <div class="body">
-                <div id="chart2">
 
-                </div>
 
-            </div>
-        </div>
     </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-    var options = {
-        chart: {
-            type: 'line',
-            height:'200px',
-        },
-        series: [{
-            name: 'sales',
-            data: [30,40,35,50,49,60,70,91,125]
-        }],
-        xaxis: {
-            categories: @json($category)
-        }
-    }
 
-    var chart = new ApexCharts(document.querySelector("#chart2"), options);
-
-    chart.render();
-</script>

@@ -9,7 +9,7 @@ class FormDay extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['form','id_day'];
+    protected $fillable = ['form','id_day','ask'];
     protected $casts = [
         'form' => 'json',
     ];

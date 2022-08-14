@@ -21,84 +21,112 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <link href="{{asset('css/pages/extra_pages.css')}}" rel="stylesheet" /><script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <link href="{{asset('Home/css/home.css')}}" rel="stylesheet" />
+ <style>
+     .radio-holder {
+         display: flex;
+         gap: 5px;
+     }
 
+     input[type="radio"] {
+         display: none;
+         width: auto;
+         padding: 0;
+         margin: 0;
+     }
+
+     .radio-label {
+         padding: 10px;
+         border: 1px solid #bbb;
+         border-radius: 10px;
+         transition: 0.3s ease;
+         cursor: pointer;
+         margin-top: 5px;
+     }
+     .radio-label:hover {
+         color: #b76e79;
+         border-color: #b76e79;
+     }
+ </style>
 <body  style=" height:100vh; display: flex; justify-content: center;align-items: center; ">
 <div style="
     position: fixed;
     width: 100%;
-    bottom: 0;
+    top: 0;
     ;
 ">
     <div style="margin:0; height: 75px;
         display: flex;
         align-items: center;
-        justify-content: center; color:  #be6779" class="alert alert-per">
+        justify-content: center; color:  black" class="alert alert-black">
         <div class="pull-left">
-            <h4> آراد برندینگ | Arad-Branding</h4>
+            <img src="{{asset('images/aradbranding.png')}}" style="width:75px" alt="arad">
+
         </div>
     </div>
 </div>
-<form  id="regForm" action="{{route('Question.store')}}" method="post" style="  width:60%;">
-    @csrf
+@if($form !== null)
+    <form  id="regForm" action="{{route('Question.store')}}" method="post" style="  width:60%;">
+        @csrf
 
-    @foreach($form as $i)
-        
-        <div class="tab">
-            @if(!is_array($i['content']))
+        @foreach($form as $i)
 
-                {!! $i['content']!!}
-            @endif
-            @if(is_array($i['content']))
-                 <div class="row mb-3">
+            <div class="tab">
+                @if(!is_array($i['content']))
 
-                 </div>
-                <div class="row">
+                    {!! $i['content']!!}
+                @endif
+                @if(is_array($i['content']))
 
-                    @foreach($i['content'] as $b)
-                        <div class="col-4" >
-                            {!! $b['option'] !!}
-                        </div>
-                    @endforeach
-                </div>
+                    {!! $i['title'] !!}
+                    <br>
+                    <div class="row">
 
-            @endif
-        </div>
-    @endforeach
 
-    <div >
-        <input name="start" value="{{verta()->format('H:i:s')}}" type="hidden">
-        <div style="
+                        @foreach($i['content'] as $b)
+                            <div class="col-4" >
+                                {!! $b['option'] !!}
+                            </div>
+                        @endforeach
+                    </div>
+
+                @endif
+            </div>
+        @endforeach
+
+        <div >
+            <input name="start" value="{{verta()->format('H:i:s')}}" type="hidden">
+            <div style="
             display: flex;
         flex-direction: column;">
-            <div class="btns" >
-                <button style="background-color: #d4af37;" type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn-hover ">قبلی</button>
+                <div class="btns" >
+                    <button style="background-color: #d4af37;" type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn-hover ">قبلی</button>
 
-                <button style="background-color:#be6779"  type="button" id="nextBtn" onclick="nextPrev(1)"  class="btn-hover ">بعدی</button>
-            </div>
-            <div style="align-self: center;">
-                @foreach($form as $i)
-                    <span class="step"></span>
-                @endforeach
+                    <button style="background-color:#be6779"  type="button" id="nextBtn" onclick="nextPrev(1)"  class="btn-hover ">بعدی</button>
+                </div>
+                <div style="align-self: center;">
+                    @foreach($form as $i)
+                        <span class="step"></span>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
-</form>
-
-<div style="
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    ;
-">
-    <div style="margin:0; height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: center; color:  #be6779" class="alert alert-per">
-        <div class="pull-left">
-            <h4> آراد برندینگ | Arad-Branding</h4>
-        </div>
-    </div>
-</div>
+    </form>
+@endif
+<!--<div style="-->
+<!--    position: fixed;-->
+<!--    width: 100%;-->
+<!--    bottom: 0;-->
+<!--    ;-->
+<!--">-->
+<!--    <div style="margin:0; height: 75px;-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        justify-content: center; color:  #be6779" class="alert alert-per">-->
+<!--        <div class="pull-left">-->
+<!--            <h4> آراد برندینگ | Arad-Branding</h4>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <script src="{{asset('Home/js/home.js')}}"></script>
 
 

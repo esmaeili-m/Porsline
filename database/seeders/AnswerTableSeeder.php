@@ -25,16 +25,22 @@ class AnswerTableSeeder extends Seeder
         $formday=count(FormDay::latest()->take(1)->value('form'));
         $count=0;
         $c=[];
-        for ($i=0;$i<200;$i++){
+
+        for ($i=0;$i<600;$i++){
             while ($count !== $formday){
-                $d=Str::random(200);
-                $c[$count]=$d;
+                $a=array("تحقیق و تسوعه","اراد برندینگ","فنی و سایت");
+                $random_keys=array_rand($a);
+                $d=Str::random(300);
+                $c[$count]=[
+                    'content'=>$d,
+                    '22'=>$a[$random_keys]
+                ];
                 $count++;
             }
             $a=json_encode($c);
             Answer::create([
                 'phone'=> '09'.rand(100000000,999999999),
-                'day'=> rand(1,$day),
+                'day'=> '26',
                 'Answer'=>$a,
                 'time'=>now()
             ]);

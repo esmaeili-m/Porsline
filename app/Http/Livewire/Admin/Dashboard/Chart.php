@@ -15,29 +15,25 @@ class Chart extends Component
     public $category=[];
     public $multichoice=[];
 
+
     public function mount()
     {
         $this->status = 0;
         $this->chart = 0;
+
     }
     public function quiz($id){
      $this->status=$id;
     }
     public function chart($id){
      $this->chart=$id;
-     $day=FormDay::latest()->take(1)->value('id_day');
-     $options = Multichoise::where('day',$day)->where('key',$this->status)->first();
-        $this->category=collect($options['options'])->map(function ($name) {
-            return  value($name['name']);
-      });
-        
+     return redirect()->route('answer.chart1',[$id,$this->status]);
     }
     public function render()
     {
-        $day=Date::latest()->take(1)->value('id');
-        $question=Multichoise::where('day',$day)->get();
-        $FormDay=FormDay::latest()->take(1)->value('form');
-
+        $day = Date::latest()->take(1)->value('id');
+        $question = Multichoise::where('day',$day)->get();
+        $FormDay = FormDay::latest()->take(1)->value('form');
         return view('livewire.admin.dashboard.chart',compact('question','FormDay'));
     }
 }
