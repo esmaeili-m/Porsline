@@ -11413,6 +11413,9 @@ input[type="radio"] {
 	grid-template-columns: repeat(3,1fr);
 	gap: 0 10px;
 }
+.radio-grid--cols-1 {
+	grid-template-columns: repeat(1,1fr) !important;
+}
 
 .radio-grid > * {
 	max-width: 100%;
@@ -11431,6 +11434,7 @@ input[type="radio"] {
 	transition: 0.3s ease;
 	cursor: pointer;
 	margin-top: 5px;
+	width: 100%;
 }
 .radio-label:hover {
 	color: #b76e79;

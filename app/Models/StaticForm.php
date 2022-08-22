@@ -5,17 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Multichoise extends Model
+class StaticForm extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'options',
-        'status',
-        'key',
-        'day',
-        'static_id'
-    ];
+    protected $fillable=['form','name','link'];
     protected $casts=[
-        'options'=>'array'
+        'form'=>'array'
     ];
 }

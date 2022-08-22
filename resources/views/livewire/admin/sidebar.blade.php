@@ -42,6 +42,17 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{Request::routeIs('user')?'active':''}}">
+                <a href="#" onClick="return false;" class="menu-toggle {{Request::routeIs('user')?'toggled':''}}">
+                    <i class="menu-icon ti-layout"></i>
+                    <span> ساخت پرسشنامه استاتیک</span>
+                </a>
+                <ul class="ml-menu">
+                    <li class="{{Request::routeIs('staticform')?'active':''}}">
+                        <a href="/staticform">ساخت پرسشنامه استاتیک</a>
+                    </li>
+                </ul>
+            </li>
 
 
         </ul>

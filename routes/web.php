@@ -17,6 +17,7 @@ Route::get('/',\App\Http\Livewire\Home\Index::class)->name('start');
 Route::get('/end',\App\Http\Livewire\Home\End::class)->name('end');
 Route::get('/Question',[welcomeController::class, 'index'])->name('Question');
 Route::post('/Question',[welcomeController::class, 'store'])->name('Question.store');
+Route::get('/Question/{form}',[welcomeController::class, 'form'])->name('Question.form');
 
 Route::middleware(['auth','admin'])->group(function(){
 //     ---------------->user
@@ -26,7 +27,6 @@ Route::middleware(['auth','admin'])->group(function(){
 
     Route::get('/user/show/{user}',\App\Http\Livewire\Admin\User\Show::class)->name('ShowUser.show'); //all day answer
     Route::get('/answer/view/{user}/{day}',\App\Http\Livewire\Admin\User\View::class)->name('view.answers'); //one day answer
-
     Route::get('/dashboard', \App\Http\Livewire\Admin\Index::class)->middleware(['auth'])->name('home');
     Route::get('/NotificationsStartDay',\App\Http\Livewire\Admin\Question\Notifications\Index::class)->name('NotificationsStartDay');
     Route::get('/NotificationsEndDay',\App\Http\Livewire\Admin\Question\Notifications\EndDay::class)->name('NotificationsEndDay');
@@ -37,17 +37,12 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/dashboard/dublicate',\App\Http\Livewire\Admin\Dashboard\Dublicate::class)->name('Dashboard.Dublicate');
     Route::get('/NotificationsDay/{notifications}',\App\Http\Livewire\Admin\Question\Notifications\Update::class)->name('notification.update');
     Route::get('/question', \App\Http\Livewire\Admin\Question\Index::class)->name('question');
-//     Route::get('/system',\App\Http\Livewire\Admin\System\Index::class)->name('system');
-//     Route::get('/CreateSystem',\App\Http\Livewire\Admin\System\Create::class)->name('CreateSystem');
-//     Route::get('/reports',\App\Http\Livewire\Admin\Log\Index::class)->name('reports');
-//     Route::get('/trashed',\App\Http\Livewire\Admin\System\Trashed::class)->name('trashed');
-//     Route::get('/update/{system}',\App\Http\Livewire\Admin\System\Update::class)->name('update');
     Route::get('/user',\App\Http\Livewire\Admin\User\Index::class)->name('user.index');
     Route::get('/count',\App\Http\Livewire\Admin\Dashboard\Count::class)->name('answer.count');
     Route::get('/chart',\App\Http\Livewire\Admin\Dashboard\Chart::class)->name('answer.chart');
     Route::get('/chart1/{chart}/{option}',\App\Http\Livewire\Admin\Dashboard\Chart\Chart1::class)->name('answer.chart1');
+    Route::get('/staticform',App\Http\Livewire\Admin\Static\Index::class)->name('staticform');
 
-//     Route::get('/CreateUser',\App\Http\Livewire\Admin\User\Create::class)->name('CreateUser.index');
 });
 
 require __DIR__.'/auth.php';

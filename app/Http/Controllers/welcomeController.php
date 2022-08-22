@@ -6,8 +6,10 @@ use App\Models\Answer;
 use App\Models\Date;
 use App\Models\FormDay;
 
-use Illuminate\Http\Request;
+
+use App\Models\StaticForm;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 use Stevebauman\Location\Facades\Location;
@@ -22,6 +24,7 @@ class welcomeController extends Controller
         
         $day=Date::latest()->take(1)->value('id');
         $form=FormDay::where('ask',1)->where('id_day',$day)->latest()->take(1)->value('form');
+//        dd($form);
         return view('Questions',compact('form'));
     }
 
@@ -40,5 +43,14 @@ class welcomeController extends Controller
             'time'=>'1'
         ]);
         return redirect()->route('end');
+    }
+
+    public function form()
+    {
+        $form=Request::segment(2);
+        $form=StaticForm::where('link',$form)->value('form');
+        dd($form);
+        return view('Questions',compact('form'));
+
     }
 }

@@ -30,11 +30,11 @@
                                     <a wire:click="enable(7)" title="سطل آشغال"> کشویی<span
                                                 class="pull-right badge bg-blue"><i class="fas fa-plus"></i></span></a>
                                 </li>
-                                <li class="form_bal_radio">
-                                    <a href="javascript:;">چک باکس <span class="pull-right badge bg-blue"><i
+                                <li >
+                                    <a >چک باکس <span class="pull-right badge bg-blue"><i
                                                     class="fas fa-plus"></i></span></a>
                                 </li>
-                                <li class="form_bal_email">
+                                <li >
                                     <a href="#" wire:click="enable(3)">ایمیل <span class="pull-right badge bg-blue"><i
                                                     class="fas fa-plus"></i></span></a>
                                 </li>
@@ -85,7 +85,7 @@
                                                 @if($defult->id == 1 || $defult->id == 2)
                                                     <div class="mr-2">
                                                         <label> </label>
-                                                        <input wire:model.lazy="placeholder"
+                                                        <input   wire:model.lazy="placeholder"
                                                                type="text" compulsion class="form-control"
                                                                placeholder="الگوی پاسخ">
                                                     </div>
@@ -180,17 +180,27 @@
                 ?>
                 @foreach($live as $i)
                     <?php $count++ ?>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-12">
                         <div class="card">
                             <div class="body">
                                 <a wire:click="deleteFormDay({{$i['key']}})" href="#">
                                     <span class="pull-right badge bg-red"> حذف فرم صفحه {{ $count}} <i
                                                 class="fa fa-trash"></i> </span>
                                 </a>
-                                <a wire:click="UpdateForm({{$i['key']}})" href="#">
-                                    <span class="pull-right badge bg-orange"> ویرایش فرم صفحه {{$count}} <i
-                                                class="fa fa-trash"></i> </span>
-                                </a>
+                                        <div class="col-3">
+                                            <?php
+                                            $param=$i['key']
+                                            ?>
+                                            <form wire:submit.prevent="order({{$param}})">
+                                                <div class="row">
+                                                <input required wire:model.defer="order"
+                                                        type="number" compulsion class="form-control"
+                                                        placeholder="جایگاه فرم ">
+                                                <button  class="btn  color-1 " type="submit">ثبت</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
                                 <form action="form">
                                     <div class="row clearfix">
                                         <div class="col-md-12">

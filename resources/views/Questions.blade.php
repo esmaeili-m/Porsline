@@ -45,7 +45,6 @@ align-items: center;">
             @csrf
 
             @foreach($form as $i)
-
                 <div class="tab">
                     @if(!is_array($i['content']))
 
@@ -55,7 +54,7 @@ align-items: center;">
 
                         {!! $i['title'] !!}
                         <br>
-                        <div class="row radio-grid">
+                        <div class="row radio-grid @if(isset($i['class'])) {{$i['class']}} @endif">
 
 
                             @foreach($i['content'] as $b)
@@ -90,21 +89,6 @@ align-items: center;">
     @endif
 </div>
 
-<!--<div style="-->
-<!--    position: fixed;-->
-<!--    width: 100%;-->
-<!--    bottom: 0;-->
-<!--    ;-->
-<!--">-->
-<!--    <div style="margin:0; height: 75px;-->
-<!--        display: flex;-->
-<!--        align-items: center;-->
-<!--        justify-content: center; color:  #be6779" class="alert alert-per">-->
-<!--        <div class="pull-left">-->
-<!--            <h4> آراد برندینگ | Arad-Branding</h4>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <script src="{{asset('Home/js/home.js')}}"></script>
 
 

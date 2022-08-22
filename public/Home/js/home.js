@@ -66,14 +66,37 @@ function nextPrev(n) {
 }
 function validateForm() {
     // This function deals with validation of the form fields
-    var x, y, i,z, valid = true;
+    var x,r, y, i,z, valid = true;
     x = document.getElementsByClassName("tab");
+    r =  document.getElementById("number");
     y = x[currentTab].getElementsByTagName("input") ;
+    z = x[currentTab].getElementsByTagName("textarea") ;
+     
+    if (r.value.length > 0){
+
+        if(isNaN(r.value)|| r.value.length < 11 || r.value.length > 11){
+            Toast.fire({
+                icon: 'error',
+                title: 'لطفا یک شماره تلفن معتبر وارد کنید '
+            })
+            valid = false;
+        }
+    }
+    if(z.length === 1){
+          // alert(document.getElementById("editor").value.length)
+        if (document.getElementById("editor").value.length <= 3) {
+            Toast.fire({
+                icon: 'error',
+                title: 'لطفا فیلد ها را با دقت پرکنید'
+            })
+            valid = false;
+    }
+    }
+    
+
     for (i = 0; i < y.length; i++) {
         // If a field is empty...
         if (y[i].value == "") {
-            // add an "invalid" class to the field:
-
             Toast.fire({
                 icon: 'error',
                 title: 'لطفا فیلد ها را با دقت پرکنید'

@@ -18,6 +18,8 @@ class Index extends Component
 {
     public FormDefault $formdefult;
     public $min;
+    public $order;
+    public $ord;
     public $max;
     public $required;
     public $placeholder;
@@ -25,6 +27,7 @@ class Index extends Component
     public $route;
     public function mount()
     {
+        $this->order='';
         $this->formdefult = new FormDefault();
     }
     protected $rules = [
@@ -49,7 +52,6 @@ class Index extends Component
             $key=count($Form)+1;
             $forms=$form->value('form');
             $collection=[];
-
         }
         if($formdefault->value('id') == 6){
             $options=Multichoise::latest()->take(1);
@@ -58,13 +60,12 @@ class Index extends Component
             $collection['key']=$key;
             $collection['ask']='null';
             $collection['type']='multiple-choice';
-
-
         }elseif($formdefault->value('id') == 7){
             $options=Multichoise::latest()->take(1);
             $collection['title']='<div class="row">'.$this->route.'</div>';
             $collection['content']=$options->value('options');
             $collection['key']=$key;
+            $collection['class']='radio-grid--cols-1';
             $collection['ask']='null';
             $collection['type']='sliding';
 
@@ -177,7 +178,7 @@ class Index extends Component
         $form=FormDay::where('id_day',$Date)->latest()->take(1);
         Multichoise::where('day',$Date)->where('key',$id)->delete();
         $value=$form->value('form');
-        
+
         unset($value[$id]);
         if(!empty($value)){
             $form->update(['form'=> $value ]);
@@ -269,6 +270,99 @@ class Index extends Component
                    ]);
                }
             }
+
+    public function order($param)
+    {
+        $day=Date::latest()->take(1)->value('id');
+        $id=$param;
+        if($this->order == null){
+            $this->emit('toast', 'error', 'مقدار ورودی باید عدد باشد.');
+        }  else {
+            $form=FormDay::latest()->take(1)->value('form');
+            
+//            if(isset($form[$this->order])){
+                $m=[];
+                if($this->order < $id){
+                    foreach($form as $i){
+                        if ($i['key'] >= $this->order){
+                            $i['oldkey']=$i['key'];
+                            $i['key']++;
+                        }
+                        $m[$i['key']]=$i;
+                    }
+                    $form[$id]['oldkey']=$form[$id]['key'];
+                    $form[$id]['key']=$this->order;
+                    $m[$this->order]=$form[$id];
+                    unset($m[$id+1]);
+                }
+                if($this->order > $id){
+                    if($this->order >= count($form)){
+
+                        $form[$id]['oldkey']=$form[$id]['key'];
+                        $form[$id]['key']=$this->order+1;
+                        $form[$this->order+1]=$form[$id];
+                        $m=$form;
+
+                        }
+                    elseif($this->order - $id == 1){
+                        $a=$form[$id];
+                        $b=$form[$this->order];
+                        $a['key']=$this->order;
+                        $a['oldkey']=$form[$id]['key'];
+                        $b['key']=$id;
+                        $b['oldkey']=$form[$this->order]['key'];
+                        $form[$id]=$b;
+                        $form[$this->order]=$a;
+                        $m=$form;
+                        $id=2000;
+                    }
+                    else{
+                        foreach($form as $i){
+                            if ($i['key'] > $this->order){
+                                $i['oldkey']=$i['key'];
+                                $i['key']++;
+                            }
+                            $m[$i['key']]=$i;
+                        }
+                        $form[$id]['oldkey']=$form[$id]['key'];
+                        $form[$id]['key']=$this->order+1;
+                        $m[$this->order+1]=$form[$id];
+                    }
+                        unset($m[$id]);
+                }
+                
+                ksort($m);
+                $r=1;
+                $f=[];
+                foreach($m as $i){
+                    if (isset($i['type'])){
+                        Multichoise::where('day',$day)->where('key',$i['oldkey'])->update(['key'=>$r]);
+                    }
+                    $i['key'] =$r;
+                    $f[$r]=$i;
+                    $r++;
+                }
+                FormDay::latest()->take(1)->update(['form'=>$f]);
+//            }
+//            else{
+//                dd('ali');
+//                foreach($form as $i){
+//                    if ($i['key'] == $id);
+//                    $v=$i['key'];
+//                    $f=$i;
+//
+//                }
+//                unset($form[$v]);
+//                $form[$this->order] = $f;
+//                FormDay::latest()->take(1)->update(['form'=>$form]);
+//                $multi=Multichoise::where('day',$day)->where('key',$id)->update(['key'=>$this->order]);
+
+//            }
+            return redirect()->route('FormCreate');
+            $this->reset(['order']);
+
+        }
+    }
 
     public function statusform()
     {
