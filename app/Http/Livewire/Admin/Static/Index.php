@@ -24,7 +24,6 @@ class Index extends Component
     public function mount()
     {
        $this->show=1;
-       $this->live=StaticForm::where('status',1)->take(1)->value('form');
 
     }
     protected $rules = [
@@ -101,6 +100,7 @@ class Index extends Component
         StaticForm::where('status',1)->update(['status'=>0]);
         FormDefault::where('status',1)->update(['status'=>0]);
         $this->show = 1;
+        $this->live='null';
     }
     public function createFormFeild(){
         

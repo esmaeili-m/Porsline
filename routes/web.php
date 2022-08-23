@@ -17,6 +17,7 @@ Route::get('/',\App\Http\Livewire\Home\Index::class)->name('start');
 Route::get('/end',\App\Http\Livewire\Home\End::class)->name('end');
 Route::get('/Question',[welcomeController::class, 'index'])->name('Question');
 Route::post('/Question',[welcomeController::class, 'store'])->name('Question.store');
+Route::post('/QuestionStatic',[welcomeController::class, 'QuestionStaticstore'])->name('QuestionStatic.store');
 Route::get('/Question/{form}',[welcomeController::class, 'form'])->name('Question.form');
 
 Route::middleware(['auth','admin'])->group(function(){
@@ -24,7 +25,6 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/user',\App\Http\Livewire\Admin\User\Index::class)->name('user');  //all_user
     Route::get('/CreateUser',\App\Http\Livewire\Admin\User\Create::class)->name('CreateUser.index'); // create_user
     Route::get('/edit/{user}',\App\Http\Livewire\Admin\User\Update::class)->name('user.edit'); //edit_user
-
     Route::get('/user/show/{user}',\App\Http\Livewire\Admin\User\Show::class)->name('ShowUser.show'); //all day answer
     Route::get('/answer/view/{user}/{day}',\App\Http\Livewire\Admin\User\View::class)->name('view.answers'); //one day answer
     Route::get('/dashboard', \App\Http\Livewire\Admin\Index::class)->middleware(['auth'])->name('home');
@@ -42,7 +42,8 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/chart',\App\Http\Livewire\Admin\Dashboard\Chart::class)->name('answer.chart');
     Route::get('/chart1/{chart}/{option}',\App\Http\Livewire\Admin\Dashboard\Chart\Chart1::class)->name('answer.chart1');
     Route::get('/staticform',App\Http\Livewire\Admin\Static\Index::class)->name('staticform');
-
+    Route::get('/analyze',App\Http\Livewire\Admin\Static\Analyze\Index::class)->name('analyze');
+    Route::get('/staticAnswer/{link}',App\Http\Livewire\Admin\Static\Analyze\Answers::class)->name('staticAnswer');
 });
 
 require __DIR__.'/auth.php';
