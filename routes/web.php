@@ -44,6 +44,7 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/staticform',App\Http\Livewire\Admin\Static\Index::class)->name('staticform');
     Route::get('/analyze',App\Http\Livewire\Admin\Static\Analyze\Index::class)->name('analyze');
     Route::get('/staticAnswer/{link}',App\Http\Livewire\Admin\Static\Analyze\Answers::class)->name('staticAnswer');
+    Route::get('/staticchart/{id}/{name}',App\Http\Livewire\Admin\Static\Analyze\Chart::class)->name('staticchart');
 });
 
 require __DIR__.'/auth.php';

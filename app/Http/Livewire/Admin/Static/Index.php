@@ -24,6 +24,7 @@ class Index extends Component
     public function mount()
     {
        $this->show=1;
+       $this->live=StaticForm::where('status',1)->take(1)->value('form');
 
     }
     protected $rules = [
@@ -101,6 +102,89 @@ class Index extends Component
         FormDefault::where('status',1)->update(['status'=>0]);
         $this->show = 1;
         $this->live='null';
+    }
+    public function order($param)
+    {
+        $id=$param;
+
+        if($id != $this->order){
+            if($this->order == null){
+                $this->emit('toast', 'error', 'مقدار ورودی باید عدد باشد.');
+            }  else {
+                $m=[];
+                $form=StaticForm::where('status',1)->value('form');
+                $formid=StaticForm::where('status',1)->value('id');
+                
+                if($this->order < $id){
+                    foreach($form as $i){
+                        if ($i['key'] >= $this->order){
+                            $i['oldkey']=$i['key'];
+                            $i['key']++;
+                        }
+                        $m[$i['key']]=$i;
+                    }
+                    $form[$id]['oldkey']=$form[$id]['key'];
+                    $form[$id]['key']=$this->order;
+                    $m[$this->order]=$form[$id];
+                    unset($m[$id+1]);
+                }
+                if($this->order > $id){
+                    if($this->order >= count($form)){
+                        $form[$id]['oldkey']=$form[$id]['key'];
+                        $form[$id]['key']=$this->order+1;
+                        $form[$this->order+1]=$form[$id];
+                        $m=$form;
+                    }
+                    elseif($this->order - $id == 1){
+                        $a=$form[$id];
+                        $b=$form[$this->order];
+                        $a['key']=$this->order;
+                        $a['oldkey']=$form[$id]['key'];
+                        $b['key']=$id;
+                        $b['oldkey']=$form[$this->order]['key'];
+                        $form[$id]=$b;
+                        $form[$this->order]=$a;
+                        $m=$form;
+                        $id=2000;
+                    }
+                    else{
+                        foreach($form as $i){
+                            if ($i['key'] > $this->order){
+                                $i['oldkey']=$i['key'];
+                                $i['key']++;
+                            }
+                            $m[$i['key']]=$i;
+                        }
+                        $form[$id]['oldkey']=$form[$id]['key'];
+                        $form[$id]['key']=$this->order+1;
+                        $m[$this->order+1]=$form[$id];
+                    }
+                    unset($m[$id]);
+                }
+
+                ksort($m);
+                $r=1;
+                $f=[];
+                foreach($m as $i){
+                    if (isset($i['type'])){
+                        Multichoise::query()->where('static_id',$formid)->where('key',$i['oldkey'])->update(['key'=>$r]);
+
+                    }
+                    $i['key'] =$r;
+                    $f[$r]=$i;
+                    $r++;
+                }
+                StaticForm::where('status',1)->take(1)->update(['form'=>$f]);
+                $this->live=StaticForm::where('status',1)->value('form');
+
+//            return redirect()->route('staticform');
+                $this->reset(['order']);
+        }
+        }else{
+            $this->emit('toast', 'error', 'اشتباه میزنی عزیزم.');
+            $this->live=StaticForm::query()->where('status',1)->value('form');
+
+        }
     }
     public function createFormFeild(){
         

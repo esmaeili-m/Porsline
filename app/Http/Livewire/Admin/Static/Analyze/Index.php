@@ -14,13 +14,15 @@ class Index extends Component
     public $count;
     public $qeustion;
     public $answers;
+    public $chart ;
+    public $qeuz;
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public function mount()
     {
          $this->name=0;
-
+         $this->chart=0;
     }
 
     public function answer()
@@ -35,6 +37,17 @@ class Index extends Component
         }
     }
 
+    public function quezchart()
+    {
+       $this->chart=1;
+       $this->qeuz=StaticForm::where('name',$this->name)->value('form');
+    }
+
+    public function chart($id)
+    {
+        $form=StaticForm::where('name',$this->name)->value('link'); 
+        return redirect(route('staticchart',[$id,$form]));
+     }
     public function statusform($id)
     {
          $name=StaticForm::find($id);

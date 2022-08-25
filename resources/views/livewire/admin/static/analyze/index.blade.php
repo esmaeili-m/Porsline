@@ -59,13 +59,20 @@
                 <div class="info-box7 l-bg-purple order-info-box7">
                     <div class="info-box7-block">
                         <div class="row">
-                            <h3 class="m-b-20"><a href="#" style="color:#ffffff; font-size: 18px;line-height:30px;   ">آنالیز نموداری  </a></h3>
-
+                            <h3 class="m-b-20"><a wire:click="quezchart" href="#" style="color:#ffffff; font-size: 18px;line-height:30px;   ">آنالیز نموداری  </a></h3>
                         </div>
                         <h2 class="text-right"><i class="fas fa-chart-bar pull-left"></i><span>{{4}}</span></h2>
                         <p class="m-b-0">آنالیز </p>
                     </div>
                 </div>
+                @if($chart==1)
+                <h6 class="mb-3">سوال خود را انتخاب کنید</h6>
+                @foreach($qeuz as $i)
+                    @if(isset($i['type']) && $i['type'] == 'multiple-choice')
+                        <button wire:click=chart("{{$i['key']}}") type="button" class="btn btn-outline-info ml-2 btn-border-radius">{{ strip_tags($i['title']) }}</button>
+                    @endif
+                @endforeach
+                @endif
             </div>
             
 

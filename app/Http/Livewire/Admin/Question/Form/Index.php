@@ -279,8 +279,6 @@ class Index extends Component
             $this->emit('toast', 'error', 'مقدار ورودی باید عدد باشد.');
         }  else {
             $form=FormDay::latest()->take(1)->value('form');
-            
-//            if(isset($form[$this->order])){
                 $m=[];
                 if($this->order < $id){
                     foreach($form as $i){
@@ -343,21 +341,6 @@ class Index extends Component
                     $r++;
                 }
                 FormDay::latest()->take(1)->update(['form'=>$f]);
-//            }
-//            else{
-//                dd('ali');
-//                foreach($form as $i){
-//                    if ($i['key'] == $id);
-//                    $v=$i['key'];
-//                    $f=$i;
-//
-//                }
-//                unset($form[$v]);
-//                $form[$this->order] = $f;
-//                FormDay::latest()->take(1)->update(['form'=>$form]);
-//                $multi=Multichoise::where('day',$day)->where('key',$id)->update(['key'=>$this->order]);
-
-//            }
             return redirect()->route('FormCreate');
             $this->reset(['order']);
 

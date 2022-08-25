@@ -34,6 +34,7 @@ class Chart extends Component
         $day = Date::latest()->take(1)->value('id');
         $question = Multichoise::where('day',$day)->get();
         $FormDay = FormDay::latest()->take(1)->value('form');
+
         return view('livewire.admin.dashboard.chart',compact('question','FormDay'));
     }
 }
